@@ -10,6 +10,7 @@ import { AccountsService } from '../service/accounts.service';
 export class DashboardComponent implements OnInit {
 
   accounts: Account[] = [];
+  accountBalance: number = 0;
 
   constructor(private accountService: AccountsService) { }
 
@@ -18,7 +19,18 @@ export class DashboardComponent implements OnInit {
   }
 
   getAccounts(): void {
-    this.accountService.getAccounts().subscribe(account => this.accounts = account);
+    this.accountService.getAccounts().subscribe(accounts => {
+      this.accounts = accounts
+
+      for (let account of accounts) {
+        this.accountBalance += +account.balance;
+      }
+    }
+    );
+  }
+
+  withdraw(): void {
+    alert('success');
   }
 
 }
