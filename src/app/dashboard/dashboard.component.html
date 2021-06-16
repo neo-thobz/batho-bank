@@ -1,6 +1,28 @@
 <h2>My Accounts</h2>
-<ul>
-    <li *ngFor="let account of accounts">
-        <span class="badge">{{ account.account_number }}</span> {{account.account_type}} {{account.balance}}
-    </li>
-</ul>
+
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 15px;
+    }
+</style>
+
+<table style="width:100%">
+    <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Age</th>
+    </tr>
+    <tr *ngFor="let account of accounts">
+        <td> {{ account.account_number }} </td>
+        <td> {{account.account_type}} </td>
+        <td> {{account.balance}} </td>
+    </tr>
+</table>
