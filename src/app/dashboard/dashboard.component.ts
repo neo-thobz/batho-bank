@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Account } from '../account';
+import { AccountsService } from '../service/accounts.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  accounts: Account[] = [];
+
+  constructor(private accountService: AccountsService) { }
 
   ngOnInit(): void {
+    this.getAccounts();
+  }
+
+  getAccounts(): void {
+    this.accountService.getAccounts().subscribe(account => this.accounts = account);
   }
 
 }
