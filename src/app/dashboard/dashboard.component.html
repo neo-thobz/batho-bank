@@ -4,7 +4,14 @@
     </div>
 </nav>
 
-<div class="container">
+<div *ngIf="accounts.length == 0">
+    <button class="waves-effect waves-light btn center" (click)='getAccounts()'>
+        <i class="material-icons left">replay</i>
+        Retry
+    </button>
+</div>
+
+<div class="container" *ngIf="accounts.length > 0">
     <blockquote>
         <h5>Account List</h5>
     </blockquote>
@@ -23,9 +30,16 @@
                 <td> {{ account.account_number }} </td>
                 <td> {{account.account_type}} </td>
                 <td> {{account.balance | currency:'ZAR '}} </td>
-                <td> <button class="waves-effect waves-light btn" (click)="withdraw()">Withdraw</button> </td>
+                <td>
+                    <button [ngClass]="[getAccountStatus(account)]" (click)="withdraw()">
+                        Withdraw
+                    </button>
+                </td>
             </tr>
         </tbody>
     </table>
-    <blockquote> Balance: {{ accountBalance | currency:'ZAR ' }} </blockquote>
+
+    <blockquote>
+        <h5> Balance: {{ accountBalance | currency:'ZAR ' }} </h5>
+    </blockquote>
 </div>
